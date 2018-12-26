@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" > 
+      
+      <h:head>
+
+</h:head>
+<body> 
+		<h1>Review</h1>
+
+
+ <h:form>
+    <h:commandButton onclick="return confirm ('Are you sure')" action="#{reviewBean.MAJReview()}" value="Mettre a jours" />
+</h:form>
+ <h:dataTable  value="#{reviewBean.displayAllReview()}" var="rvw"  border="1">
+   
+    <h:column>
+    <f:facet  name ="header" >Content</f:facet>
+        <h:outputText value="#{rvw.content}" ></h:outputText>
+   
+   </h:column>
+    <h:column>
+    
+    <f:facet  name ="header" >Rating</f:facet>
+        <h:outputText value="#{rvw.rating}" ></h:outputText>
+   
+   </h:column>
+    <h:column>
+    <f:facet  name ="header" >Date</f:facet>
+        <h:outputText value="#{rvw.datePost}" ></h:outputText>
+   
+   </h:column>
+    <h:column>
+   
+  </h:column>
+ 
+  <!--  onclick="return confirm ('Are you sure')" -->
+ 
+   <!--  <h:commandButton action="#{userBean.removeUser(user.idUser)}" value="Modifier"  />  -->
+       <h:column>
+    <f:facet  name ="header" ><h:outputText value="Action" /></f:facet>
+       <h:form>
+    <h:commandButton onclick="return confirm ('Are you sure')" action="#{reviewBean.removeReview(rvw.id)}" value="Supprimer" />
+</h:form>
+   </h:column>
+   
+      <h:column>
+    <f:facet  name ="header" ><h:outputText value="Action" /></f:facet>
+       <h:form>
+    <h:commandButton onclick="return confirm ('Are you sure')" action="#{reviewBean.editReview(rvw)}" value="Modifier" />
+</h:form>
+   </h:column>
+   
+    </h:dataTable>
+    
+
+</body> 
+</html>
+

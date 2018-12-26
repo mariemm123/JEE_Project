@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-//Hiii
+
 /**
  * The persistent class for the Addresses database table.
  * 
