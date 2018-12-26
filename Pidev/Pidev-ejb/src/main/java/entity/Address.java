@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
+//Hiii
 /**
  * The persistent class for the Addresses database table.
  * 
@@ -14,7 +14,7 @@ import java.util.List;
 @NamedQuery(name="Address.findAll", query="SELECT a FROM Address a")
 public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+//hello
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="AddressId", unique=true, nullable=false)
