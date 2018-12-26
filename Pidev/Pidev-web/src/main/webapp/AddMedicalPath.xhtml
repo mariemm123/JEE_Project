@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head></h:head> 
+<body> 
+
+<h:form>
+<h:panelGrid coulumns="1">
+ 
+
+
+   <p:outputLabel value="Description" for="acSimple" />
+        <p:autoComplete id="acSimple" value="#{mp.description}"  />
+
+<h:outputLabel value="Date" />
+<p:calendar pattern="dd/MM/yyyy" locale="pt" value="#{mp.dateParcour}"></p:calendar>
+
+ <p:selectOneMenu id="lazy" value="#{mp.id}" dynamic="true" style="width:125px">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItems value="#{mp.ListSpeciality()}" var="item" itemLabel="#{item.nomSpecialite}" itemValue="#{item.specialityId}"  />
+        </p:selectOneMenu>
+        
+        
+        
+<p:selectOneMenu id="rrrr" value="#{mp.nomdoc}" dynamic="true" style="width:125px">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItems value="#{mp.DocProposed()}" var="item" itemLabel="#{item.nom}" itemValue="#{item.nom}"  />
+        </p:selectOneMenu>
+
+
+ <p:commandButton value="add" id="nonAjax" action="#{mp.doAdd()}" style="margin-right:20px;" ajax="false" />
+ 
+
+</h:panelGrid>
+
+</h:form>
+
+
+</body> 
+</html>

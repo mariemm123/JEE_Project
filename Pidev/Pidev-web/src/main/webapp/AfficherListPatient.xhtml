@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<style type="text/css">
+    .ui-datalist .ui-datalist-content {
+        border:0 none
+    }
+     
+    .ui-datalist ul {
+        padding: 0px 10px 0 20px;
+        margin: 5px 0;
+    }
+     
+    .value {
+        font-weight: bold;
+    }
+     
+    .ui-autocomplete-itemtip {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+</style>
+</h:head> 
+<body> 
+<p:dataTable var="m" value="#{mp.listpatients()}">
+    <p:column headerText="FirstName">
+        <h:outputText value="#{m.firstName}" />
+    </p:column>
+ 
+
+    <p:column headerText="LastName">
+        <h:outputText value="#{m.lastName}" />
+    </p:column>
+ 
+  <p:column headerText="Email">
+        <h:outputText value="#{m.email}" />
+    </p:column>
+    
+    
+ 	  <p:column headerText="Ajouter MedicalPath">
+ 	  
+ 	  
+ 	  
+ 	  
+ 	 
+	  <!--   <p:growl id="growl" life="2000" />
+     
+    <p:commandLink id="ajax" update="growl" action="/AddMedicalPath.xhtml" style="margin-right:20px;">
+        <h:outputText value="Ajax Submit" />
+    </p:commandLink>
+		 -->
+	</p:column>	
+
+
+
+</p:dataTable>
+
+
+</body> 
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  			
+
+ 
+ 
+ <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+	
+
+<f:metadata>
+		<f:event listener="#{mp.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+
+	<ui:define name="pageContent">
+	<center>
+		<h:form>
+
+<h:dataTable var="vu" value="#{mp.pls}">
+
+ <h:column headerText="Skillname">
+        <h:outputText value="#{vu.description}" />
+    </h:column>
+    
+    
+   </h:dataTable> 
+    
+    
+    
+   
+	
+			
+		</h:form>
+	</center>
+		</ui:define>
+</ui:composition>
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
