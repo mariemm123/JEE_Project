@@ -9,6 +9,7 @@ import javax.naming.NamingException;
 import Service.MedicalPathServiceRemote;
 import entity.MedicalPath;
 import entity.Speciality;
+import entity.Treatement;
 
 
 
@@ -18,6 +19,8 @@ public class MedicalPathService {
 		
 		MedicalPath m=new MedicalPath(new Timestamp(2),"medPathamine5");
 		
+		
+		Treatement t=new Treatement(new Timestamp(2),"eeee","eeee",false);
 		//Context context=new InitialContext();
 		InitialContext context = new InitialContext();
 
@@ -28,7 +31,7 @@ public class MedicalPathService {
 	MedicalPathServiceRemote proxy=(MedicalPathServiceRemote)context.lookup(jndiName);
 	proxy.addMedicalPath(m,2);
 
-
+    proxy.addtetement(t);
 	System.out.println("fffffffffffffffffff");
 	
 }

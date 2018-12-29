@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 /**
@@ -21,7 +22,7 @@ public class Treatement implements Serializable {
 	private int treatementId;
 
 	@Column(name="DateTretement", nullable=false)
-	private Timestamp DateTretement;
+	private Date DateTretement;
 
 	@Column(nullable=false, length=50)
 	private String description;
@@ -48,7 +49,7 @@ public class Treatement implements Serializable {
 		this.treatementId = treatementId;
 	}
 
-	public Timestamp getDateTretement() {
+	public Date getDateTretement() {
 		return this.DateTretement;
 	}
 
@@ -87,5 +88,14 @@ public class Treatement implements Serializable {
 	public void setAspNetUser(AspNetUser aspNetUser) {
 		this.aspNetUser = aspNetUser;
 	}
+
+	public Treatement(Date dateTretement, String description, String duréeTretement, boolean validation) {
+		super();
+		DateTretement = dateTretement;
+		this.description = description;
+		DuréeTretement = duréeTretement;
+		Validation = validation;
+	}
+	
 
 }

@@ -1,6 +1,4 @@
 
-
-
 package managerbean;
 
 import java.io.IOException;
@@ -40,6 +38,16 @@ import entity.ProposedDoc;
 public class MedicalPathBean {
 	
 
+	private Date dateTretement;
+	private String Dsec;
+	
+	private String duréeTretement;
+	
+	private Boolean validation;
+	
+	
+	
+	
 	private String description; 
 	private Date dateParcour; 
 	private String nomdoc;
@@ -47,6 +55,7 @@ public class MedicalPathBean {
     private List<Speciality> specs;
    private List<MedicalPath> pls;
    
+   private int MedicalPathid;
    private List<MedicalPath> Lismppppp;
    private List<AspNetUser>  listpatients;
     private int id ;
@@ -71,7 +80,38 @@ public class MedicalPathBean {
 		
 	
 	}
-
+	
+	
+	public void addTretement()
+	{
+		mdpselo.addtetement(new Treatement(dateTretement,Dsec,duréeTretement,validation));
+	}
+/*    public int removeMedicalPath (int MedicalPathid)
+    {
+    	mdpselo.deleteMedicalPath(MedicalPathid);
+    	System.out.println("supprimee2");
+    	return MedicalPathid;
+    }
+*/
+	/*public void removemedicalpath(int id) {
+		mdpselo.deletemedpayh(id);
+	}*/
+	public MedicalPathBean()
+	{
+		
+	}
+	
+	/**/
+	
+	
+    public int removeMedicalPath (int MedicalPathid)
+    {
+    	mdpselo.deletMedicalPath(MedicalPathid);
+    	System.out.println("supprimee2");
+    	return MedicalPathid;
+    }
+	
+    
 
 	public List<Speciality> ListSpeciality()
 	{
@@ -287,6 +327,46 @@ System.out.println(pls);
   
   
 
+	public Date getDateTretement() {
+	return dateTretement;
+}
+
+
+public void setDateTretement(Date dateTretement) {
+	this.dateTretement = dateTretement;
+}
+
+
+public String getDsec() {
+	return Dsec;
+}
+
+
+public void setDsec(String dsec) {
+	Dsec = dsec;
+}
+
+
+public String getDuréeTretement() {
+	return duréeTretement;
+}
+
+
+public void setDuréeTretement(String duréeTretement) {
+	this.duréeTretement = duréeTretement;
+}
+
+
+public Boolean getValidation() {
+	return validation;
+}
+
+
+public void setValidation(Boolean validation) {
+	this.validation = validation;
+}
+
+
 	public int getId() {
 		return id;
 	}
@@ -360,6 +440,12 @@ System.out.println(pls);
 
 	public void setListpatients(List<AspNetUser> listpatients) {
 		this.listpatients = listpatients;
+	}
+	public int getMedicalPathid() {
+		return MedicalPathid;
+	}
+	public void setMedicalPathid(int medicalPathid) {
+		MedicalPathid = medicalPathid;
 	}
 
 
@@ -452,5 +538,8 @@ System.out.println(pls);
 			e.printStackTrace();
 		}
 		return mps;
-	}*/	
+	}*/
+	
+	
+	
 }

@@ -31,6 +31,7 @@ import WebService.clientamine;
 import entity.MedicalPath;
 import entity.ProposedDoc;
 import entity.Speciality;
+import entity.Treatement;
 
 
 
@@ -54,6 +55,38 @@ public  class MedicalPathService implements MedicalPathServiceRemote, MedicalPat
     	
     
     }
+    /*
+     *   @Override
+	    public void deleteReviewbyid(int ReviewId)
+	    {
+	      Review e =em.find(Review.class,ReviewId )	;
+	      em.remove(e);
+	      System.out.println("supprimee1"+e); 
+		 
+	    }
+*/
+    @Override
+    public void deletMedicalPath(int MedicalPathid)
+    {
+      MedicalPath e =em.find(MedicalPath.class,MedicalPathid )	;
+      em.remove(e);
+      System.out.println("supprimee1"+e); 
+	 
+    }
+
+    
+    
+    
+    
+    public void addtetement(Treatement t ) 
+    {
+	
+		em.persist(t);
+	} 
+	
+
+    
+    
     public void addMedicalPath(MedicalPath m , int SpecId) 
     {
 		Speciality sp = em.find(Speciality.class, SpecId) ;

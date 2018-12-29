@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+
+
+xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+    </h:head>
+	
+
+
+<p:dataTable var="m" value="#{mp.Lismppppp()}">
+    <p:column headerText="Description">
+        <h:outputText value="#{m.description}" />
+    </p:column>
+ 
+    <p:column headerText="DateParcour">
+        <h:outputText value="#{m.dateParcour}" />
+    </p:column>
+    
+     <p:column headerText="Speciality">
+        <h:outputText value="#{m.speciality}" />
+    </p:column>
+  
+ <p:column headerText="ProposerDoctor">
+        <h:outputText value="#{m.doctorName}" />
+    </p:column>
+
+
+
+       <p:column>
+     <f:facet  name ="header" ><h:outputText value="Action" /></f:facet> 
+       <h:form> 
+       <h:commandButton  action="#{mp.removeMedicalPath(m.medicalPathId)}" value="Delete" styleClass="btn btn-danger" />
+ </h:form> 
+   </p:column> 
+
+
+
+
+
+</p:dataTable>
+	
+</html>

@@ -8,6 +8,7 @@ import javax.ejb.Remote;
 import entity.MedicalPath;
 import entity.ProposedDoc;
 import entity.Speciality;
+import entity.Treatement;
 
 @Remote
 public interface MedicalPathServiceRemote {
@@ -17,7 +18,6 @@ public interface MedicalPathServiceRemote {
 		   public List<Speciality>  ListSpeciality() ;
 		   public String getSpecById(int id ) ;
 		public	List<ProposedDoc> DocProposed();
-	
-
-
+	    public void deletMedicalPath(int MedicalPathid);
+	    public void addtetement(Treatement t ) ;
 }

@@ -119,6 +119,19 @@ public class MedicalPath implements Serializable {
 		return serialVersionUID;
 	}
 
+	public MedicalPath(int medicalPathId, Date dateParcour, String doctorName, String doctorAdress, String description,
+			AspNetUser aspNetUser1, AspNetUser aspNetUser2, entity.Speciality speciality) {
+		super();
+		MedicalPathId = medicalPathId;
+		DateParcour = dateParcour;
+		DoctorName = doctorName;
+		DoctorAdress = doctorAdress;
+		Description = description;
+		AspNetUser1 = aspNetUser1;
+		AspNetUser2 = aspNetUser2;
+		Speciality = speciality;
+	}
+
 	public MedicalPath(Date dateParcour, String doctorName, String description) {
 		super();
 		DateParcour = dateParcour;

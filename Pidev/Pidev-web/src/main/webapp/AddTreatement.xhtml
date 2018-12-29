@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head></h:head> 
+<body> 
+
+<h:form>
+<h:panelGrid coulumns="1">
+ 
+
+
+
+<h:outputLabel value="DateTretement" />
+<p:calendar pattern="dd/MM/yyyy" locale="pt" value="#{mp.dateTretement}"></p:calendar>
+
+
+   <p:outputLabel value="Description" for="acSimple" />
+        <p:autoComplete id="acSimple" value="#{mp.dsec}"  />
+
+        
+           <p:outputLabel value="DuréeTretement" for="acSimple" />
+        <p:autoComplete id="rr" value="#{mp.duréeTretement}"  />
+
+
+
+           <p:outputLabel value="Validation" for="acSimple" />
+   <p:selectBooleanCheckbox  value="#{mp.validation}"/>
+  
+
+ <p:commandButton value="add" id="nonAjax" action="#{mp.addTretement()}" style="margin-right:20px;" ajax="false" />
+ 
+
+</h:panelGrid>
+
+</h:form>
+
+
+</body> 
+</html>
