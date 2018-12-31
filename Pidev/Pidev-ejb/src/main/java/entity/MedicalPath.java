@@ -145,6 +145,13 @@ public class MedicalPath implements Serializable {
 		Description = description;
 	}
 
+	public MedicalPath(int medicalPathId, Date dateParcour, String description) {
+		super();
+		MedicalPathId = medicalPathId;
+		DateParcour = dateParcour;
+		Description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "MedicalPath [MedicalPathId=" + MedicalPathId + ", DateParcour=" + DateParcour + ", DoctorName="

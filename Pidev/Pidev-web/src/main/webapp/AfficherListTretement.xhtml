@@ -152,6 +152,22 @@ xmlns:p="http://primefaces.org/ui">
                     </div>
 
 		<h1>Liste Des Tretements</h1>
+	
+	
+	   <p:column>
+    <f:facet  name ="header" ><h:outputText value="Modifier Traitement" /></f:facet>
+       <h:form>
+    <h:commandButton action="#{mp.Gotolistpatient()}" value="Go Back" styleClass="btn btn-link">
+ 
+    </h:commandButton>
+    
+    
+</h:form>
+   </p:column>
+	
+	
+
+		
 
 <p:dataTable var="m" value="#{mp.ListTretments()}">
     <p:column headerText="Description">
@@ -171,18 +187,30 @@ xmlns:p="http://primefaces.org/ui">
    <p:column headerText="Validation">
         <h:outputText value="#{m.validation}" />
     </p:column>
+    
+       <p:column>
+     <f:facet  name ="header" ><h:outputText value="Annuler Traitement" /></f:facet> 
+       <h:form> 
+       <h:commandButton onclick="return confirm ('Are you sure')" action="#{mp.removetertbyid(m)}" value="Supprimer" styleClass="btn btn-danger" />
+ </h:form> 
+   </p:column> 
+   
+ 
+    <p:column>
+    <f:facet  name ="header" ><h:outputText value="Modifier Traitement" /></f:facet>
+       <h:form>
+    <h:commandButton onclick="return confirm ('Are you sure')" action="#{mp.modifier(m)}" value="Modifier" styleClass="btn btn-danger">
+   
+   
+    </h:commandButton>
+    
+    
+</h:form>
+   </p:column>
+    
+
 
 </p:dataTable>
-
-
-
-
-
-
-
-
-
-         
                    
           </section>                   
                    

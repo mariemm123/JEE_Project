@@ -51,39 +51,46 @@ public  class MedicalPathService implements MedicalPathServiceRemote, MedicalPat
     public void addSpeciality(Speciality sp)
     {
     em.persist(sp);	
-    	
-    	
-    
+
     }
-    /*
-     *   @Override
-	    public void deleteReviewbyid(int ReviewId)
-	    {
-	      Review e =em.find(Review.class,ReviewId )	;
-	      em.remove(e);
-	      System.out.println("supprimee1"+e); 
-		 
-	    }
-*/
-    @Override
-    public void deletMedicalPath(int MedicalPathid)
+
+
+    
+
+  @Override
+    public void deleteMedicalPathid(int id)
     {
-      MedicalPath e =em.find(MedicalPath.class,MedicalPathid )	;
-      em.remove(e);
-      System.out.println("supprimee1"+e); 
+    
+	  Query query= em.createQuery("delete from MedicalPath e where e.MedicalPathId=:id ");
+		query.setParameter("id", id);
+		query.executeUpdate();
+  
 	 
     }
 
-    
-    
-    
-    
+    @Override
+    public void removetretbyid(Treatement t)
+    {
+      int id = t.getTreatementId();
+	  Query query= em.createQuery("delete from Treatement e where e.TreatementId=:id ");
+		query.setParameter("id", id);
+		query.executeUpdate();
+		   System.out.println("supprimeetttttttttttttttttttttttttttt"+ id); 
+	 
+    }
+ 
+
     public void addtetement(Treatement t ) 
     {
 	
 		em.persist(t);
 	} 
 	
+	@Override
+	public void updateTretement(Treatement t) {
+	    em.merge(t);
+		
+	}
 
     
     
@@ -153,6 +160,15 @@ public  class MedicalPathService implements MedicalPathServiceRemote, MedicalPat
 			return null ;
 		}
 	}
+
+
+
+
+
+
+
+
+
 
 
 	

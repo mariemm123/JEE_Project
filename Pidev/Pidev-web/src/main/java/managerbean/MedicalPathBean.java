@@ -37,6 +37,10 @@ import entity.ProposedDoc;
 @ViewScoped
 public class MedicalPathBean {
 	
+	private int idtretement;
+
+	private Treatement treatement=new Treatement(); 
+	
 
 	private Date dateTretement;
 	private String Dsec;
@@ -65,13 +69,41 @@ public class MedicalPathBean {
 	@EJB
 	private MedicalPathServiceLocal mdpselo;
 	
+	public Treatement getTreatement() {
+		return treatement;
+	}
+
+
+	public void setTreatement(Treatement treatement) {
+		this.treatement = treatement;
+	}
+
+	public int getIdtretement() {
+		return idtretement;
+	}
+
+
+	public void setIdtretement(int idtretement) {
+		this.idtretement = idtretement;
+	}
+
+
+	public MedicalPathServiceLocal getMdpselo() {
+		return mdpselo;
+	}
+
+
+	public void setMdpselo(MedicalPathServiceLocal mdpselo) {
+		this.mdpselo = mdpselo;
+	}
+
+
 	
 	
-//	@PostConstruct
-  //  public void init() {
-	//	this.setId(1);
-		
-	//}
+	
+	
+	
+	
 	public String doAdd()
 	{
 		mdpselo.addMedicalPath(new MedicalPath(dateParcour,nomdoc,description),id);
@@ -86,32 +118,54 @@ public class MedicalPathBean {
 	{
 		mdpselo.addtetement(new Treatement(dateTretement,Dsec,duréeTretement,validation));
 	}
-/*    public int removeMedicalPath (int MedicalPathid)
-    {
-    	mdpselo.deleteMedicalPath(MedicalPathid);
-    	System.out.println("supprimee2");
-    	return MedicalPathid;
-    }
-*/
-	/*public void removemedicalpath(int id) {
-		mdpselo.deletemedpayh(id);
-	}*/
+
+	
+	public String mettreAjourTreatement()
+	{
+		
+		mdpselo.updateTretement(new Treatement(dateTretement,Dsec,duréeTretement,validation));
+		return "AfficherListTretement?faces-redirect=true";
+	}
+	
+	
+	//doUpdateAppointment c bn mriguela 
+	
+	public String modifier(Treatement t)
+	{
+	/*	this.setDateTretement(t.getDateTretement());
+		this.setDsec(t.getDescription());
+		this.setDuréeTretement(t.getDuréeTretement());
+		this.setValidation(t.getValidation());
+        this.setIdtretement(t.getTreatementId());*/
+		
+		dateTretement=t.getDateTretement();
+		Dsec=t.getDescription();
+		duréeTretement=t.getDuréeTretement();
+		validation=t.getValidation();
+		idtretement=t.getTreatementId();
+		//login=user.getLogin();
+		// password=user.getPassword();
+		// userIdToBeUpdated=user.getId();
+	
+        return "UpdateTretement?faces-redirect=true";
+	}
+	
 	public MedicalPathBean()
 	{
 		
 	}
 	
 	/**/
-	
-	
-    public int removeMedicalPath (int MedicalPathid)
+	  public void removeMedicalPath (int MedicalPathid)
     {
-    	mdpselo.deletMedicalPath(MedicalPathid);
-    	System.out.println("supprimee2");
-    	return MedicalPathid;
+    	mdpselo.deleteMedicalPathid(MedicalPathid);
     }
-	
-    
+	  public void removetertbyid (Treatement t)
+	    {
+	    	mdpselo.removetretbyid(t);
+	    }
+
+
 
 	public List<Speciality> ListSpeciality()
 	{
@@ -187,19 +241,7 @@ public class MedicalPathBean {
     Gson gson = new Gson();
     Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
     
-   // Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-	//Date date=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(string);
-	//mp.setDateParcour(date);
-    
-    
-    
-    
-//list=gson.fromJson(data, new TypeToken<List<MedicalPath>>(){}.getType());
-//    
-//System.out.println(list);
 
-
-    
     ArrayList<MedicalPath> pls = g.fromJson(data, listType);
     System.out.println(pls);
 	        
@@ -302,6 +344,9 @@ String data = Jsoup.connect(webPage).ignoreContentType(true).execute().body();
 
 System.out.println(data);
 
+
+
+
 Gson gson = new Gson();
 Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 
@@ -318,11 +363,10 @@ Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 
 
 
-List<Treatement> listTretement = g.fromJson(data, listType);
-System.out.println(pls);
-        
-  return listTretement;
-
+		List<Treatement> listTretement = g.fromJson(data, listType);
+	
+		System.out.println(pls);
+		return listTretement;
     }
   
   
@@ -449,97 +493,29 @@ public void setValidation(Boolean validation) {
 	}
 
 
-
-
-/*	public List<AspNetUser> listpatient()
+	public String GotoPageListeTraitement()
 	{
-	clientamine c = new clientamine(2);
-    List<AspNetUser> listePatient = new  ArrayList<>();
-
-	try {
-	   
-	         JSONArray json = c.readJsonFromUrl("http://localhost:54774/api/patient");
-	   
-	       
-	     for (int i = 0, count = json.length(); i < count; i++) {
-	            
-		AspNetUser patient = new  AspNetUser();
-	            
-	            
-	  
-	        JSONObject obj = (JSONObject)json.get(i);
-	          
-	        patient.setFirstName(obj.get("firstName").toString());
-	        
-	        patient.setLastName(obj.getString("lastName"));
-	        patient.setEmail(obj.getString("Email"));
-	      
-	        // patient.setCours1(obj.get("course").toString());
-	        
-	        listePatient.add(patient);
-
-	         }
-	       
-	     System.out.println(listePatient);
-	     
-	   } catch (IOException e) {
-	         
-	   e.printStackTrace();
-
-	        } catch (JSONException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	return listePatient;
-		}*/
-
-	
-//	public List<MedicalPath> ListMedicalPath()
-//	{
-//		System.out.println("okkkk");
-//		
-//		List<MedicalPath> MedicalPaths=	mdpselo.getAllMedicalPath();
-//		System.out.println(MedicalPaths.size());
-//		return MedicalPaths;
-//	}
-	/*	public List<MedicalPath> ListMedicalPath()
-	 {
-		// TODO Auto-generated method stub
-		clientamine c = new clientamine(2);
-		List<MedicalPath> mps = new  ArrayList<>();
-		try {
-			JSONArray json = c.readJsonFromUrl("http://localhost:54774/api/mdp");
-			
-				for (int i = 0, count = json.length(); i < count; i++) {        
-					MedicalPath mp = new  MedicalPath();  
-					
-					JSONObject obj = (JSONObject)json.get(i);
-					mp.setDescription(obj.get("Description").toString());
-					String string =obj.get("DateParcour").toString();
-					Date date=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(string);
-					mp.setDateParcour(date);
-					//System.out.println(date); // Sat Jan 02 00:00:00 GMT 2010
-					// patient.setCours1(obj.get("course").toString());
-					mps.add(mp);
-				}
-				for (MedicalPath medicalPath : mps) {
-					System.out.println(medicalPath.getDescription());
-					System.out.println(medicalPath.getDateParcour());
-				}
 		
-  } catch (IOException e) {
-        
-  e.printStackTrace();
-       } catch (JSONException e) {
-   
-       e.printStackTrace();
-       } catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return mps;
-	}*/
-	
-	
-	
+		return "AfficherListTretement?faces-redirect=true";
+	}
+	public String GotoPageListeMedicalPath()
+	{
+		
+		return "AffichageMediPath?faces-redirect=true";
+	}
+	public String GotoPageAddMedicalPath()
+	{
+		
+		return "AjouterMedicalPathwithtemp?faces-redirect=true";
+	}
+	public String GotoPageAddTraitement()
+	{
+		
+		return "AddTreatement?faces-redirect=true";
+	}
+	public String Gotolistpatient()
+	{
+		
+		return "AfficherListPatient?faces-redirect=true";
+	}
 }

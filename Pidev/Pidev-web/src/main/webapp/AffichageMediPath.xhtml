@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -154,6 +152,26 @@ xmlns:p="http://primefaces.org/ui">
 		<h1>Liste Des MedicalPaths</h1>
 
 
+   <p:column>
+    <f:facet  name ="header" ><h:outputText value="Modifier Traitement" /></f:facet>
+       <h:form>
+    <h:commandButton  action="#{mp.Gotolistpatient()}" value="Go Back" styleClass="btn btn-link">
+    
+   
+    </h:commandButton>
+    
+    
+</h:form>
+   </p:column>
+
+
+
+
+
+
+
+
+
 <p:dataTable var="m" value="#{mp.Lismppppp()}">
     <p:column headerText="Description">
         <h:outputText value="#{m.description}" />
@@ -163,33 +181,20 @@ xmlns:p="http://primefaces.org/ui">
         <h:outputText value="#{m.dateParcour}" />
     </p:column>
     
-     <p:column headerText="Speciality">
-        <h:outputText value="#{m.speciality}" />
-    </p:column>
-  
- <p:column headerText="ProposerDoctor">
-        <h:outputText value="#{m.doctorName}" />
-    </p:column>
-
-  <!--  <h:form>
-    <p:commandButton onclick="return confirm ('Are you sure')" action="#{reviewBean.removeReview(rvw.id)}" value="Supprimer" />
-</h:form> -->
 
        <p:column>
-     <f:facet  name ="header" ><h:outputText value="Action" /></f:facet> 
+     <f:facet  name ="header" ><h:outputText value="Annuler parcours patient" /></f:facet> 
        <h:form> 
-       <h:commandButton  action="#{mp.removeMedicalPath(m.medicalPathId)}" value="Delete" styleClass="btn btn-danger" />
+       <h:commandButton  action="#{mp.removeMedicalPath(m.medicalPathId)}" value="Supprimer" styleClass="btn btn-danger" />
  </h:form> 
    </p:column> 
 
-<!--  <p:column>
-	<f:facet name="header">
-		<h:outputText value="Actions" />
-	</f:facet>
-		<h:commandButton action="#{mp.DeletMedicalpath(m)}" value="Supprimer"/>
-		
-		
-	</p:column>	 -->
+    <p:column>
+     <f:facet  name ="header" ><h:outputText value="Modifier parcours patient" /></f:facet> 
+       <h:form> 
+       <h:commandButton onclick="return confirm ('Are you sure')" action="#{mp.removeMedicalPath(m.medicalPathId)}" value="Modifier" styleClass="btn btn-danger" />
+ </h:form> 
+   </p:column> 
 
 
 
@@ -198,12 +203,6 @@ xmlns:p="http://primefaces.org/ui">
 
 
 
-
-
-
-
-
-         
                    
           </section>                   
                    

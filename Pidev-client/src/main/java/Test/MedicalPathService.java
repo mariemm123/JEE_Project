@@ -17,10 +17,11 @@ public class MedicalPathService {
 	public static void main(String[] args) throws NamingException {
 		
 		
-		MedicalPath m=new MedicalPath(new Timestamp(2),"medPathamine5");
+		MedicalPath m=new MedicalPath(new Timestamp(2),"test1");
 		
 		
 		Treatement t=new Treatement(new Timestamp(2),"eeee","eeee",false);
+	
 		//Context context=new InitialContext();
 		InitialContext context = new InitialContext();
 
@@ -29,9 +30,12 @@ public class MedicalPathService {
 
 	String jndiName="Pidev-ear/Pidev-ejb/MedicalPathService!Service.MedicalPathServiceRemote";
 	MedicalPathServiceRemote proxy=(MedicalPathServiceRemote)context.lookup(jndiName);
-	proxy.addMedicalPath(m,2);
+	//proxy.addMedicalPath(m,2);
 
-    proxy.addtetement(t);
+	
+
+    //proxy.addtetement(t);
+     //proxy.removetretbyid(16);
 	System.out.println("fffffffffffffffffff");
 	
 }

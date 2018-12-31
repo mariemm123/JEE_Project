@@ -18,6 +18,13 @@ public interface MedicalPathServiceRemote {
 		   public List<Speciality>  ListSpeciality() ;
 		   public String getSpecById(int id ) ;
 		public	List<ProposedDoc> DocProposed();
-	    public void deletMedicalPath(int MedicalPathid);
+	   //public void deletMedicalPath(int MedicalPathid);
 	    public void addtetement(Treatement t ) ;
+	    
+	    public void deleteMedicalPathid(int id);
+	   // public void removetretbyid(int id);
+	    public void removetretbyid(Treatement t);
+
+	     public void updateTretement(Treatement t);
+	   
 }

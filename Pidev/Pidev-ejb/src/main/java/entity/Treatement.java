@@ -19,7 +19,7 @@ public class Treatement implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TreatementId", unique=true, nullable=false)
-	private int treatementId;
+	private int TreatementId;
 
 	@Column(name="DateTretement", nullable=false)
 	private Date DateTretement;
@@ -42,11 +42,11 @@ public class Treatement implements Serializable {
 	}
 
 	public int getTreatementId() {
-		return this.treatementId;
+		return this.TreatementId;
 	}
 
 	public void setTreatementId(int treatementId) {
-		this.treatementId = treatementId;
+		this.TreatementId = treatementId;
 	}
 
 	public Date getDateTretement() {
@@ -91,6 +91,16 @@ public class Treatement implements Serializable {
 
 	public Treatement(Date dateTretement, String description, String duréeTretement, boolean validation) {
 		super();
+		DateTretement = dateTretement;
+		this.description = description;
+		DuréeTretement = duréeTretement;
+		Validation = validation;
+	}
+
+	public Treatement(int treatementId, Date dateTretement, String description, String duréeTretement,
+			boolean validation) {
+		super();
+		TreatementId = treatementId;
 		DateTretement = dateTretement;
 		this.description = description;
 		DuréeTretement = duréeTretement;
