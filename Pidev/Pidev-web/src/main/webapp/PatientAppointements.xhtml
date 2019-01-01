@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui"
+	template="index.xhtml">
+
+ <ui:define name="content">
+<h:form>
+	<p:dataTable var="apt" value="#{appointmentBean.listAppointment}">
+				
+		<p:column headerText="Nom Docteur">
+			<h:outputText value="#{apt.aspNetUser3.lastName}"/>
+		</p:column>
+		<p:column headerText="Prenom Docteur">
+			<h:outputText value="#{apt.aspNetUser3.firstName}"/>
+		</p:column>
+		<p:column headerText="Pays">
+			<h:outputText value="#{apt.aspNetUser3.address.country}"/>
+		</p:column>
+		<p:column headerText="Ville">
+			<h:outputText value="#{apt.aspNetUser3.address.city}"/>
+		</p:column>
+		<p:column headerText="Rue">
+			<h:outputText value="#{apt.aspNetUser3.address.street}"/>
+		</p:column>
+			<p:column headerText="Date">
+			<h:outputText value="#{apt.appointementDate.date}"/>/<h:outputText value="#{apt.appointementDate.month+1}"/>/<h:outputText value="#{apt.appointementDate.year+1900}"/>
+		</p:column>
+		<p:column headerText="Heure du RDV">
+		  <h:outputText value="#{apt.appointementDate}">
+            <f:convertDateTime type="time" dateStyle="full"/>
+        </h:outputText>
+        </p:column>
+        <p:column>
+	<f:facet name="header">
+		<h:outputText value="Actions" />
+	</f:facet>
+		<h:commandButton action="#{appointmentBean.doRemoveAppointment(apt)}" value="Annuler le RDV"/>
+		<h:commandButton action="#{appointmentBean.toUpdateAppointment(apt)}" value="Modifier le RDV"/>
+		
+	</p:column>	
+	</p:dataTable>
+</h:form>
+</ui:define>
+</ui:composition> 

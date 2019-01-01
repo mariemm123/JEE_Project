@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui"
+	template="index.xhtml">
+
+ <ui:define name="content">
+ <style type="text/css">
+    .ui-datatable .ui-datatable-header {
+        text-align: right !important;
+    }
+     
+    .ui-button-text-only .ui-button-text {
+        padding: 0.3em 0.4em;
+    }
+     
+    .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+        visibility: hidden;
+    }
+     
+    .ui-filter-column .ui-column-customfilter .custom-filter {
+        width: 100%;
+        box-sizing: border-box;
+    }
+     
+    .year-spinner input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+<p:panelGrid columns="2" >
+<p:column>
+<h:form>
+<h:outputText value="Tableau de L'Indice de Masse Graisseuse (IMG) en fonction de l'IMC et du sexe et de l'age." />
+<h:outputText value="Formule de Référence de Gaallager : IMG (%) = (1.46∗IMC) + (0.14∗Age) − (11.6∗Sexe) − 10.0 " />
+     <p:dataTable var="img" value="#{imcBean.listImg}" widgetVar="IMGTABLE"
+                 emptyMessage="img non trouvable" filteredValue="">
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Rechercher:" />
+                <p:inputText id="globalFilter" onkeyup="PF('IMGTABLE').filter()" style="width:150px" placeholder="Mot clé"/>
+            </p:outputPanel>
+        </f:facet>
+ 		
+		      
+		<p:column headerText="Date">
+			<h:outputText value="#{img.imcDate}"/>
+		</p:column>
+			
+		<p:column headerText="Heure de prise des mesures">
+		  <h:outputText value="#{img.imcDate}">
+            <f:convertDateTime type="time" dateStyle="full"/>
+        </h:outputText>
+        </p:column>
+        <p:column headerText="IMG">
+			<h:outputText value="#{img.imgValue}"/>
+		</p:column>
+
+
+
+			
+    </p:dataTable>
+</h:form>
+
+</p:column>
+<h:form>
+<p:column headerText="Nouvelle prise de mesures">
+<h:panelGrid>
+
+<h:outputText
+                value="Img Le plus Faible :  #{imcBean.minimg}" style="color: darkcyan;    font-size:large;" />
+        <br/>
+        <br/>
+
+<h:outputText
+                value="Img le Plu élevé   :  #{imcBean.maximg}" style="color: darkcyan;    font-size: large;" />
+        
+<br/><br/>
+
+<h:outputText
+                value="La Moynenne Imgs   :  #{imcBean.moyenneimg.asDouble}" style="color: darkcyan;    font-size: large;" />
+        <br/><br/>
+</h:panelGrid>
+<h:panelGrid columns="2" > 
+ <p:panel id="basic" header="Dernier Resultat de calcul de votre IMG est égal à : #{appointmentBean.imgToShow.imgValue}" footer="Vous pouvez vous réfèrer aux tableaux ci-dessous pour interpreter votre resultat" style="width:500px">
+        
+            <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+           <h:outputText
+                value="Conseils" style="color: red;    font-size: -webkit-xxx-large;margin-left: 132px;" />
+        <br/>
+            <h:outputText
+                value="Si vous êtes au dessus ou en dessous de la norme, alors un médecin ou un nutritionniste sont les personnes à privilégier pour vous aider à réduire votre pourcentage de masse grasse, dans le cadre d’un régime alimentaire et d’une hygiène de vie adaptée.
+N’oubliez pas qu’au delà d’un critère esthétique, calculer son IMG et obtenir un résultat dans la « bonne fourchette » vous permettra de réduire les conséquences souvent dangereuses d’un excès de masse graisseuse, d’où l’intérêt de calculer régulièrement cet indice de masse grasse." style="color: grey; font-size: x-large;" />
+       
+    </p:panel>
+</h:panelGrid>
+
+<h2 style="color: aqua; width: 500px;">Homme</h2>
+    		<table style="color: aqua;width: 500px;">
+    		<tr>
+    			<td>Valeur de l'IMG</td>
+    			<td>Interprétation</td>
+    		</tr>
+    		<tr>
+    			<td>Inférieur à 15% :</td>
+    			<td>Trop maigre</td>
+    		</tr>
+    		<tr>
+    			<td>Entre 15% et 20% :</td>
+    			<td>Pourcentage normal</td>
+    		</tr>
+    		<tr>
+    			<td>Supérieur à 20% :</td>
+    			<td>Trop de graisse</td>
+    		</tr>
+    		
+    		</table>
+<h2 style="color: plum; width: 500px;">Femme</h2>
+    		<table style="color: plum; width: 500px;">
+    		<tr>
+    			<td>Valeur de l'IMG</td>
+    			<td>Interprétation</td>
+    		</tr>
+    		<tr>
+    			<td>Inférieur à 15% :</td>
+    			<td>Trop maigre</td>
+    		</tr>
+    		<tr>
+    			<td>Entre 15% et 20% :</td>
+    			<td>Pourcentage normal</td>
+    		</tr>
+    		<tr>
+    			<td>Supérieur à 20% :</td>
+    			<td>Trop de graisse</td>
+    		</tr>
+    		
+    		</table>
+    		
+</p:column>
+
+</h:form>	
+
+	
+		</p:panelGrid>
+		
+</ui:define>
+</ui:composition> 

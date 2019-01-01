@@ -3,50 +3,47 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
-
 
 /**
  * The persistent class for the Appointments database table.
  * 
  */
 @Entity
-@Table(name="Appointments")
-@NamedQuery(name="Appointment.findAll", query="SELECT a FROM Appointment a")
+@Table(name = "Appointments")
+@NamedQuery(name = "Appointment.findAll", query = "SELECT a FROM Appointment a")
 public class Appointment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="AppointmentId", unique=true, nullable=false)
+	@Column(name = "AppointmentId")
 	private int appointmentId;
 
-	@Column(nullable=false)
-	private Timestamp appointementDate;
+	private Date appointementDate;
 
-	@Column(nullable=false, length=50)
 	private String reason;
 
-	@Column(nullable=false)
 	private int state;
 
-	//bi-directional many-to-one association to AspNetUser
+	// bi-directional many-to-one association to AspNetUser
 	@ManyToOne
-	@JoinColumn(name="User_Id", referencedColumnName="Id")
+	@JoinColumn(name = "User_Id")
 	private AspNetUser aspNetUser1;
 
-	//bi-directional many-to-one association to AspNetUser
+	// bi-directional many-to-one association to AspNetUser
 	@ManyToOne
-	@JoinColumn(name="doctor_Id", referencedColumnName="Id")
+	@JoinColumn(name = "doctor_Id")
 	private AspNetUser aspNetUser2;
 
-	//bi-directional many-to-one association to AspNetUser
+	// bi-directional many-to-one association to AspNetUser
 	@ManyToOne
-	@JoinColumn(name="patient_Id", referencedColumnName="Id")
+	@JoinColumn(name = "patient_Id")
 	private AspNetUser aspNetUser3;
 
-	//bi-directional many-to-one association to Report
-	@OneToMany(mappedBy="appointment")
+	// bi-directional many-to-one association to Report
+	@OneToMany(mappedBy = "appointment")
 	private List<Report> reports;
 
 	public Appointment() {
@@ -60,12 +57,12 @@ public class Appointment implements Serializable {
 		this.appointmentId = appointmentId;
 	}
 
-	public Timestamp getAppointementDate() {
+	public Date getAppointementDate() {
 		return this.appointementDate;
 	}
 
-	public void setAppointementDate(Timestamp appointementDate) {
-		this.appointementDate = appointementDate;
+	public void setAppointementDate(Date d) {
+		this.appointementDate = d;
 	}
 
 	public String getReason() {
@@ -129,5 +126,13 @@ public class Appointment implements Serializable {
 
 		return report;
 	}
+
+	@Override
+	public String toString() {
+		return "Appointment [appointmentId=" + appointmentId + ", appointementDate=" + appointementDate + ", reason="
+				+ reason + ", state=" + state + ", aspNetUser1=" + aspNetUser1 + ", aspNetUser2=" + aspNetUser2
+				+ ", aspNetUser3=" + aspNetUser3 + ", reports=" + reports + "]";
+	}
+	
 
 }

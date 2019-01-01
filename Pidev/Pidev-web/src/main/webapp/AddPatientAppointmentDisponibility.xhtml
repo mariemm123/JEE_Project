@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui"
+	template="index.xhtml">
+
+ <ui:define name="content">
+ <style type="text/css">
+    .ui-datatable .ui-datatable-header {
+        text-align: right !important;
+    }
+     
+    .ui-button-text-only .ui-button-text {
+        padding: 0.3em 0.4em;
+    }
+     
+    .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+        visibility: hidden;
+    }
+     
+    .ui-filter-column .ui-column-customfilter .custom-filter {
+        width: 100%;
+        box-sizing: border-box;
+    }
+     
+    .year-spinner input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+<p:panelGrid columns="2" >
+<p:column>
+<h:form>
+
+    <p:dataTable var="dis" value="#{appointmentBean.disponibilities}" widgetVar="docsTable"
+                 emptyMessage="docteur introuvable" filteredValue="">
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Rechercher:" />
+                <p:inputText id="globalFilter" onkeyup="PF('docsTable').filter()" style="width:150px" placeholder="Mot clé"/>
+            </p:outputPanel>
+        </f:facet>
+			<p:column headerText="Date">
+			<h:outputText value="#{dis.startTimeOfDisponibility.date}"/>/<h:outputText value="#{dis.startTimeOfDisponibility.month+1}"/>/<h:outputText value="#{dis.startTimeOfDisponibility.year+1900}"/>
+		</p:column>
+		<p:column headerText="Heure disponible">
+		  <h:outputText value="#{dis.startTimeOfDisponibility}">
+            <f:convertDateTime type="time" dateStyle="full"/>
+        </h:outputText>
+        </p:column>
+
+
+		<p:column>
+	<f:facet name="header">
+	<h:outputText value="Ajouter Rendez-Vous" />
+	</f:facet>
+		<h:commandButton action="#{appointmentBean.doAddAppointment(dis)}" value="ajouter rendez-vous"/>
+	</p:column>	
+    </p:dataTable>
+</h:form>
+</p:column>
+<p:column headerText="Commentaire">
+			<h:outputText value="Veuillez saisir les principaux symptomes de votre maladie" style="font-size: x-large;"/>
+			<p:inputTextarea value="#{appointmentBean.appointmentDescription}"  style="width:400px;" />
+		</p:column>
+</p:panelGrid>
+</ui:define>
+</ui:composition> 

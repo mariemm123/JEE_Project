@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui"
+	template="index.xhtml">
+
+ <ui:define name="content">
+ <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+            <p:printer target="basic" />
+        </p:commandButton>
+ <style type="text/css">
+    .ui-datatable .ui-datatable-header {
+        text-align: right !important;
+    }
+     
+    .ui-button-text-only .ui-button-text {
+        padding: 0.3em 0.4em;
+    }
+     
+    .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+        visibility: hidden;
+    }
+     
+    .ui-filter-column .ui-column-customfilter .custom-filter {
+        width: 100%;
+        box-sizing: border-box;
+    }
+     
+    .year-spinner input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+
+<h:form>
+  <p:panel id="basic" header="#{appointmentBean.commentaire} : votre IMC est égal à : #{appointmentBean.imc.imcValue}" footer="Il faut rester prudent à la lecture de ces chiffres : pour un même IMC, la composition corporelle peut en effet varier d'un individu à l'autre. L'IMC ne tient pas compte de la répartition des graisses dans le corps. Ainsi, une femme enceinte ou un sportif de haut niveau auront un IMC élevé sans pour autant présenter d'excès de masse grasse. Un surpoids peut être lié à la présence d’œdèmes. On peut sembler maigre mais présenter un excès de graisse abdominale. Cet autre critère doit être pris en compte pour estimer si un patient est atteint d'obésité : le tour de taille. L'excès de masse grasse localisé autour du ventre est en effet associé à un risque accru de diabète et de maladies cardiovasculaires, indépendamment de l'IMC. En outre, des travaux scientifiques ont montré que l'utilisation du seul IMC revient à sous-estimer ces risques. Lorsque le tour de taille est supérieur à 94 cm chez l'homme et à 80 cm chez la femme, on parle d'obésité abdominale. Elle touche 41,6 % des hommes et 48,5 % des femmes. Il faut donc retenir que :
+
+Un IMC hors normes est un signal d'alerte incitant à une évaluation nutritionnelle plus détaillée.
+Il est indispensable de tenir compte de l'évolution de l'IMC dans le temps : une diminution rapide du poids ou de l'IMC doivent conduire à une évaluation du statut nutritionnel avec le médecin traitant.
+Le calcul de l'IMC n'est qu'un élément de l'évaluation nutritionnelle qui inclut l'examen clinique, l'état de santé et la prise en compte du contexte (sport, grossesse, etc.).
+Qu'il s'agisse d'une situation de dénutrition ou d'obésité, le problème de poids ou de statut nutritionnel, donc indirectement d'alimentation, est lié à une multitude de facteurs liés aux habitudes de vie et à l'environnement." style="margin-bottom:20px">
+        <h:panelGrid columns="2" cellpadding="10">
+            <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+            <h:outputText
+                value="#{appointmentBean.recomandation}" style="font-size: xx-large;" />
+        </h:panelGrid>
+        <h:commandButton action="#{imcBean.ToImc()}" value="Retour" />
+    </p:panel>
+
+</h:form>
+<h:form>
+<p:column headerText="Calculer Votre Masse Graisseuse">
+
+
+
+
+<p:panel id="basicc" header="Calculer votre img" footer="Pour plus de precision vous pouvez calculer votre IMGs" style="width:500px">
+        <h:panelGrid columns="2"> 
+        <p:column>
+<h:outputLabel value="Veuillez Selectionnner Votre Sexe:" />
+<h:outputLabel value="Age :" />
+  </p:column>
+   <p:column>
+   <h:selectOneMenu value="#{imcBean.sexe}">
+    <f:selectItem itemValue="0" itemLabel="Femme" />
+    <f:selectItem itemValue="1" itemLabel="Homme" />
+  </h:selectOneMenu>
+
+<h:inputText value="#{imcBean.age}" />
+ </p:column>
+</h:panelGrid>
+     <h:commandButton action="#{imcBean.toImgAdvice()}" value="Claculer IMG" />    
+    </p:panel>
+
+
+</p:column>
+
+</h:form>	
+
+</ui:define>
+</ui:composition> 

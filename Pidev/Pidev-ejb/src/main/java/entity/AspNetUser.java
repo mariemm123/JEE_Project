@@ -20,7 +20,7 @@ public class AspNetUser implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="Id", unique=true, nullable=false)
-	private int Id;
+	private String Id;
 	@Column(name="AccessFailedCount", nullable=false)
 	private int AccessFailedCount;
 
@@ -141,6 +141,10 @@ public class AspNetUser implements Serializable {
 	//bi-directional many-to-one association to Treatement
 	@OneToMany(mappedBy="aspNetUser")
 	private List<Treatement> treatements;
+	@OneToMany(mappedBy="aspNetUser" , cascade={CascadeType.ALL})
+	private List<Imc> imc;
+	@OneToMany(mappedBy="aspNetUser" , cascade={CascadeType.ALL})
+	private List<Img> img;
 
 	public AspNetUser() {
 	}
@@ -607,6 +611,42 @@ public class AspNetUser implements Serializable {
 				+ speciality + ", chats1=" + chats1 + ", chats2=" + chats2 + ", comments=" + comments
 				+ ", disponibilities=" + disponibilities + ", foras=" + foras + ", medicalPaths1=" + medicalPaths1
 				+ ", medicalPaths2=" + medicalPaths2 + ", posts=" + posts + ", treatements=" + treatements + "]";
+	}
+
+
+
+
+
+	public String getId() {
+		return Id;
+	}
+
+
+
+
+
+	public void setId(String id) {
+		Id = id;
+	}
+
+
+
+
+
+	public List<Imc> getImc() {
+		return imc;
+	}
+
+	public void setImc(List<Imc> imc) {
+		this.imc = imc;
+	}
+
+	public List<Img> getImg() {
+		return img;
+	}
+
+	public void setImg(List<Img> img) {
+		this.img = img;
 	}
 
 }

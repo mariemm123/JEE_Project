@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 /**
@@ -21,10 +22,10 @@ public class Disponibility implements Serializable {
 	private int disponibilityId;
 
 	@Column(nullable=false)
-	private Timestamp endTimeOfDisponibility;
+	private Date endTimeOfDisponibility;
 
 	@Column(nullable=false)
-	private Timestamp startTimeOfDisponibility;
+	private Date startTimeOfDisponibility;
 
 	@Column(name="State", nullable=false)
 	private boolean state;
@@ -45,19 +46,19 @@ public class Disponibility implements Serializable {
 		this.disponibilityId = disponibilityId;
 	}
 
-	public Timestamp getEndTimeOfDisponibility() {
+	public Date getEndTimeOfDisponibility() {
 		return this.endTimeOfDisponibility;
 	}
 
-	public void setEndTimeOfDisponibility(Timestamp endTimeOfDisponibility) {
+	public void setEndTimeOfDisponibility(Date endTimeOfDisponibility) {
 		this.endTimeOfDisponibility = endTimeOfDisponibility;
 	}
 
-	public Timestamp getStartTimeOfDisponibility() {
+	public Date getStartTimeOfDisponibility() {
 		return this.startTimeOfDisponibility;
 	}
 
-	public void setStartTimeOfDisponibility(Timestamp startTimeOfDisponibility) {
+	public void setStartTimeOfDisponibility(Date startTimeOfDisponibility) {
 		this.startTimeOfDisponibility = startTimeOfDisponibility;
 	}
 
